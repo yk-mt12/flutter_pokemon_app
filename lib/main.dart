@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'poke_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,59 +12,32 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const TopPage());
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
+class TopPage extends StatefulWidget {
+  const TopPage({Key? key}) : super(key: key);
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _TopPageState createState() => _TopPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _TopPageState extends State<TopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Stack(children: [
-        Container(
-          padding: const EdgeInsets.all(32),
-          child: Image.network(
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-              width: 100,
-              height: 100),
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text(
-            'No.25',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ]),
-      const Text(
-        'pikachu',
-        style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+      child: ElevatedButton(
+        child: const Text('detail'),
+        onPressed: () => {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => const PokeDetail()))
+        },
       ),
-      const Chip(
-        label: Text('electric'),
-        backgroundColor: Colors.yellow,
-      ),
-//       )))
-    ])));
+    ));
   }
 }
